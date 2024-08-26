@@ -39,5 +39,9 @@ pipeline {
                     echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
                 }
             }
+            stage('Deploy to Production') {
+                steps {
+                    echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
+            }
         }
     }
