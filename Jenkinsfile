@@ -92,5 +92,13 @@ pipeline {
         always {
             echo 'Pipeline execution completed.'
         }
+          post {
+                always {
+                    emailext (
+                        subject: "Succesfull completion: ${currentBuild.currentResult}",
+                        body: """Succesfull execution of pipeline: ${currentBuild.currentResult}.
+                        Check the attached logs for details.""",
+                        attachLog: true,
+                        to: 'nikhilnaga2@gmail.com'
     }
 }
