@@ -44,7 +44,7 @@ pipeline {
             post {
                 always {
                     emailext attachLog: true, body: 'Security scan stage completed with result: ${currentBuild.currentResult}.Check the attached logs for details.',
-                        subject: 'Security Scan Stage: ${currentBuild.currentResult}',to: 'nikhilnaga2@gmail.com
+                        subject: 'Security Scan Stage: ${currentBuild.currentResult}',to: 'nikhilnaga2@gmail.com'
                     
                 }
             }
