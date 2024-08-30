@@ -20,13 +20,13 @@ pipeline {
             }
             post {
                 always {
-                    emailext (
+                    emailext 
                         subject: "Test Stage: ${currentBuild.currentResult}",
                         body: """Test stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
                         attachLog: true,
                         to: 'nikhilnaga2@gmail.com'
-                    )
+                    
                 }
             }
         }
