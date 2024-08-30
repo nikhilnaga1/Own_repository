@@ -26,8 +26,8 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Analyze the code for quality using SonarQube'
+            }
         }
-
         // Stage 4: Security Scan
         stage('Security Scan') {
             steps {
@@ -65,7 +65,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             echo 'Pipeline execution completed.'
