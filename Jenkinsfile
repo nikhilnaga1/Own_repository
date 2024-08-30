@@ -5,47 +5,40 @@ pipeline {
         // Stage 1: Build
         stage('Build') {
             steps {
-                echo 'Building the code using Maven...'
+                echo 'Building the code using automation tool Maven...'
             }
         }
 
         // Stage 2: Unit and Integration Tests
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit and integration tests using JUnit...'
-                // Task: Run unit tests and integration tests to ensure code correctness and integration
-                // Tool: JUnit, TestNG
+                echo 'Running unit and integration tests to ensure code correctness and integration by using tool JUnit'
             }
             post{
                 success{
-                    emailext attachLog: true, body: 'This stage is success', subject: 'The Unit and intergration stage $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is success', subject: 'The Unit and intergration stage of $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
                 }
                 failure{
-                    emailext attachLog: true, body: 'This stage is Failure', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is Failure', subject: 'The Unit and intergration stage of $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
                 }
             }
         }
         stage('Code Analysis') {
             steps {
-                echo 'Performing code analysis using SonarQube...'
-                // Task: Analyze the code for quality, adherence to coding standards, and potential issues
-                // Tool: SonarQube
-            }
+                echo 'Analyze the code for quality using SonarQube'
         }
 
         // Stage 4: Security Scan
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan using OWASP Dependency-Check...'
-                // Task: Scan the code for known vulnerabilities in dependencies
-                // Tool: OWASP Dependency-Check
+                echo 'perform a security scan on the code using a tool using OWASP for any vulnerabilities...'
             }
             post{
                 success{
-                    emailext attachLog: true, body: 'This stage is success', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is success', subject: 'Security Scan stage of $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
                 }
                 failure{
-                    emailext attachLog: true, body: 'This stage is Failure', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is Failure', subject: 'Security Scan stage of $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
                 }
             }
         }
@@ -61,18 +54,14 @@ pipeline {
         // Stage 6: Integration Tests on Staging
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests on the staging environment...'
-                // Task: Run integration tests in the staging environment to ensure production-like behavior
-                // Tool: Selenium, Postman
+                echo 'Running integration tests on the staging environment using Selenim...'
             }
         }
 
         // Stage 7: Deploy to Production
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying the application to the production environment...'
-                // Task: Deploy the application to a production server (e.g., AWS EC2 instance)
-                // Tool: AWS CLI, Ansible
+                echo 'Deploying the application to the production environment using AWS EC2...'
             }
         }
     }
