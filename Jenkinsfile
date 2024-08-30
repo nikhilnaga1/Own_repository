@@ -20,11 +20,10 @@ pipeline {
             }
             post {
                 always {
-                    emailext (
+                    mail (
                         subject: "Test Stage: ${currentBuild.currentResult}",
                         body: """Test stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
-                        attachLog: true,
                         to: 'nikhilnaga2@gmail.com'
                     )
                 }
@@ -49,11 +48,10 @@ pipeline {
             }
             post {
                 always {
-                    emailext (
+                    mail (
                         subject: "Security Scan Stage: ${currentBuild.currentResult}",
                         body: """Security scan stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
-                        attachLog: true,
                         to: 'nikhilnaga2@gmail.com'
                     )
                 }
@@ -91,6 +89,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-        }
-    }
+        }
+    }
 }
