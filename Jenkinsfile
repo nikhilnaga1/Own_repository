@@ -20,22 +20,13 @@ pipeline {
             }
             post {
                 always {
-                    script {
-                        def result = currentBuild.currentResult
-                        echo "Test stage completed with result: ${result}"
-                        echo "Sending email notification..."
-
-                        def logOutput = sh(script: 'tail -n 100 $WORKSPACE/target/surefire-reports/*.txt', returnStdout: true).trim()
-
-                        try {
-                            sh """
-                                echo "Test stage completed with result: ${result}.\n\nLogs:\n${logOutput}" | mailx -s "Test Stage: ${result}" nikhilnaga2@gmail.com
-                            """
-                            echo "Email sent successfully."
-                        } catch (Exception e) {
-                            echo "Failed to send email: ${e.getMessage()}"
-                        }
-                    }
+                    emailext (
+                        subject: "Test Stage: ${currentBuild.currentResult}",
+                        body: """Test stage completed with result: ${currentBuild.currentResult}.
+                        Check the attached logs for details.""",
+                        attachLog: true,
+                        to: 'nikhilnaga2@gmail.com'
+                    )
                 }
             }
         }
@@ -58,22 +49,13 @@ pipeline {
             }
             post {
                 always {
-                    script {
-                        def result = currentBuild.currentResult
-                        echo "Security scan stage completed with result: ${result}"
-                        echo "Sending email notification..."
-
-                        def logOutput = sh(script: 'tail -n 100 $WORKSPACE/owasp-report/*.txt', returnStdout: true).trim()
-
-                        try {
-                            sh """
-                                echo "Security scan stage completed with result: ${result}.\n\nLogs:\n${logOutput}" | mailx -s "Security Scan Stage: ${result}" nikhilnaga2@gmail.com
-                            """
-                            echo "Email sent successfully."
-                        } catch (Exception e) {
-                            echo "Failed to send email: ${e.getMessage()}"
-                        }
-                    }
+                    emailext (
+                        subject: "Security Scan Stage: ${currentBuild.currentResult}",
+                        body: """Security scan stage completed with result: ${currentBuild.currentResult}.
+                        Check the attached logs for details.""",
+                        attachLog: true,
+                        to: 'nikhilnaga2@gmail.com'
+                    )
                 }
             }
         }
@@ -109,6 +91,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-        }
-    }
+        }
+    }
 }
