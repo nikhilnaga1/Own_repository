@@ -25,6 +25,7 @@ pipeline {
                         body: """Test stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
                         attachLog: true,
+                        recipientProviders: [developers(), requestor()]
                         to: 'nikhilnaga2@gmail.com'
                     )
                 }
