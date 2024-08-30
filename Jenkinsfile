@@ -13,6 +13,7 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests to ensure code correctness and integration by using tool JUnit'
+                sh 'jfklahfdsa'
             }
             post{
                 success{
