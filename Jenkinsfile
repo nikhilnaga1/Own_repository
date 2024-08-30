@@ -18,7 +18,7 @@ pipeline {
             }
             post{
                 success{
-                    emailext attachLog: true, body: 'This stage is success', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is success', subject: 'The Unit and intergration stage $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
                 }
                 failure{
                     emailext attachLog: true, body: 'This stage is Failure', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
@@ -42,7 +42,7 @@ pipeline {
             }
             post{
                 success{
-                    emailext attachLog: true, body: 'This stage is success', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
+                    emailext attachLog: true, body: 'This stage is success', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $currentResult!', to: 'nikhilnaga2@gmail.com'
                 }
                 failure{
                     emailext attachLog: true, body: 'This stage is Failure', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'nikhilnaga2@gmail.com'
@@ -83,5 +83,3 @@ pipeline {
         }
     }
 }
-
-            
