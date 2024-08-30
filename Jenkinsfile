@@ -25,7 +25,8 @@ pipeline {
                         body: """Test stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
                         attachLog: true,
-                        to: 'nikhilnaga2@gmail.com'
+                        to: 'nikhilnaga2@gmail.com',
+                        excludeRecipients: 'noreply@github.com'
                     )
                 }
             }
@@ -54,7 +55,8 @@ pipeline {
                         body: """Security scan stage completed with result: ${currentBuild.currentResult}.
                         Check the attached logs for details.""",
                         attachLog: true,
-                        to: 'nikhilnaga2@gmail.com'
+                        to: 'nikhilnaga2@gmail.com',
+                        excludeRecipients: 'noreply@github.com'
                     )
                 }
             }
