@@ -26,7 +26,7 @@ pipeline {
                         Check the attached logs for details.""",
                         attachLog: true,
                         to: 'nikhilnaga2@gmail.com',
-                        recipientProviders: [requestor()]    
+                        recipientProviders: [$class: 'RequesterRecipientProvider']
                     )
                 }
             }
